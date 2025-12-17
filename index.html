@@ -3,876 +3,698 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>어필리에이트 블로그 교육용 예시 콘텐츠</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>블로그 수익화 콘텐츠 교육 시뮬레이터</title>
     <style>
+        /* 기본 설정 */
+        :root {
+            --naver-green: #03c75a;
+            --bg-color: #f5f6f8;
+            --text-color: #333;
+            --gray-text: #888;
+            --border-color: #e4e8eb;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Nanum Gothic', sans-serif;
-            background-color: #f5f6f7;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            font-family: 'Nanum Gothic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
             padding: 20px;
         }
 
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        .container {
+            width: 100%;
+            max-width: 480px; /* 모바일 뷰 최적화 너비 */
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .header h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .tab-container {
-            background: white;
-            border-radius: 10px 10px 0 0;
-            margin-top: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
+        /* 탭 네비게이션 */
         .tabs {
             display: flex;
-            border-bottom: 2px solid #e9ecef;
+            background: white;
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .tab {
+        .tab-btn {
             flex: 1;
-            padding: 18px 20px;
-            text-align: center;
+            padding: 12px;
+            border: none;
+            background: none;
             cursor: pointer;
-            background: #f8f9fa;
-            color: #666;
-            font-size: 1.05em;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            border-right: 1px solid #e9ecef;
-        }
-
-        .tab:last-child {
-            border-right: none;
-        }
-
-        .tab:hover {
-            background: #e9ecef;
-        }
-
-        .tab.active {
-            background: white;
-            color: #667eea;
-            border-bottom: 3px solid #667eea;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 30px;
-            background: white;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 교육용 해설 섹션 */
-        .education-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-left: 5px solid #667eea;
-            padding: 25px;
-            margin-bottom: 30px;
+            font-weight: bold;
+            color: var(--gray-text);
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.2s;
         }
 
-        .education-section h3 {
-            color: #667eea;
+        .tab-btn.active {
+            background-color: var(--naver-green);
+            color: white;
+        }
+
+        /* 섹션 A: 교육용 분석 카드 */
+        .analysis-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #FFC107; /* 교육용 강조 컬러 */
+        }
+
+        .analysis-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 15px;
-            font-size: 1.4em;
-            font-weight: 800;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .education-section h4 {
+        .analysis-badge {
+            background-color: #FFF3CD;
+            color: #856404;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .analysis-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .analysis-content {
+            font-size: 14px;
+            line-height: 1.6;
             color: #555;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-            font-weight: 700;
         }
 
-        .education-section ul {
-            margin-left: 20px;
+        .analysis-content strong {
+            color: #d63384;
+            background-color: #f8f9fa;
+            padding: 0 2px;
+        }
+        
+        .analysis-content ul {
+            padding-left: 20px;
             margin-top: 10px;
         }
-
-        .education-section li {
+        
+        .analysis-content li {
             margin-bottom: 8px;
-            line-height: 1.7;
         }
 
-        .education-section p {
-            margin-bottom: 12px;
-            line-height: 1.8;
-        }
-
-        .education-section strong {
-            color: #764ba2;
-            font-weight: 700;
-        }
-
-        /* 블로그 시뮬레이션 섹션 */
-        .blog-simulation {
+        /* 섹션 B: 네이버 블로그 시뮬레이션 */
+        .blog-frame {
             background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
+            border-radius: 0; /* 모바일 느낌 */
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #ddd;
+            min-height: 800px;
         }
 
+        /* 블로그 헤더 */
         .blog-header {
-            padding: 25px 30px;
-            border-bottom: 2px solid #f0f0f0;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .blog-category {
+            color: var(--naver-green);
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
         }
 
         .blog-title {
-            font-size: 1.8em;
-            font-weight: 800;
-            color: #222;
-            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: bold;
             line-height: 1.4;
+            margin-bottom: 15px;
+            word-break: keep-all;
         }
 
         .blog-meta {
             display: flex;
             align-items: center;
-            gap: 15px;
-            color: #888;
-            font-size: 0.95em;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--gray-text);
         }
 
-        .blog-meta span {
+        .author-img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
             display: flex;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            font-size: 18px;
         }
 
-        .blog-content {
-            padding: 30px;
-            line-height: 1.8;
-        }
-
-        .blog-content h3 {
-            font-size: 1.5em;
-            margin-top: 40px;
-            margin-bottom: 20px;
+        /* 블로그 본문 */
+        .blog-body {
+            padding: 20px;
+            font-size: 16px;
+            line-height: 1.7;
             color: #333;
-            font-weight: 800;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
         }
 
-        .blog-content h4 {
-            font-size: 1.2em;
+        .blog-body p {
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        
+        .blog-body h3 {
+             margin-top: 40px;
+             margin-bottom: 20px;
+             font-size: 19px;
+             font-weight: bold;
+             border-left: 4px solid #333;
+             padding-left: 12px;
+        }
+
+        .blog-body h4 {
             margin-top: 25px;
-            margin-bottom: 15px;
-            color: #444;
-            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 17px;
+            color: #555;
         }
-
-        .blog-content p {
-            margin-bottom: 15px;
-        }
-
-        .blog-content ul {
-            margin: 15px 0;
+        
+        .blog-body ul {
             padding-left: 20px;
-        }
-
-        .blog-content li {
-            margin-bottom: 8px;
-        }
-
-        /* 이미지 플레이스홀더 */
-        .image-placeholder {
-            background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
-            border: 2px dashed #bbb;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            padding: 15px 15px 15px 35px;
             border-radius: 8px;
-            padding: 60px 20px;
-            margin: 25px 0;
-            text-align: center;
+        }
+        
+        .blog-body li {
+            margin-bottom: 5px;
+        }
+
+        /* 가상 이미지 (Emoji 스타일) */
+        .virtual-img-box {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+            border-radius: 12px;
+            margin: 20px 0 8px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.03);
+            border: 1px solid #edf0f2;
             position: relative;
+            overflow: hidden;
         }
 
-        .image-placeholder::before {
-            content: '✕';
-            font-size: 4em;
-            color: #999;
+        .virtual-img-emoji {
+            font-size: 80px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
+        }
+        
+        .virtual-img-box:hover .virtual-img-emoji {
+            transform: scale(1.1);
+        }
+
+        .virtual-img-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.05);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #888;
+            font-weight: bold;
+        }
+
+        .img-caption {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-bottom: 25px;
             display: block;
-            margin-bottom: 15px;
         }
 
-        .image-placeholder p {
-            color: #666;
-            font-size: 0.95em;
-            font-style: italic;
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* 제휴 링크 버튼 */
+        /* 제휴 링크 스타일 */
         .affiliate-link {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 14px 30px;
-            border-radius: 25px;
+            display: block;
+            background-color: #f1f3f5;
+            border: 1px solid #d0d7de;
+            padding: 15px;
+            margin: 30px 0;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
-            margin: 15px 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            color: #0969da;
+            font-weight: bold;
+            text-align: center;
+            transition: background 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-
+        
         .affiliate-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            background-color: #e9ecef;
+            text-decoration: underline;
         }
 
-        .affiliate-link-text {
-            color: #667eea;
-            font-weight: 700;
-            text-decoration: underline;
-            cursor: pointer;
+        .affiliate-link::before {
+            content: '🔗 ';
+        }
+
+        /* 하이라이트 박스 (인용구 등) */
+        .quote-box {
+            border-left: 4px solid var(--naver-green);
+            background-color: rgba(3, 199, 90, 0.05);
+            padding: 15px;
+            color: #555;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
         }
 
         /* 블로그 푸터 */
         .blog-footer {
-            padding: 25px 30px;
-            border-top: 2px solid #f0f0f0;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: #fafafa;
-        }
-
-        .blog-footer button {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.95em;
-            transition: all 0.3s ease;
-        }
-
-        .blog-footer button:hover {
-            background: #f5f5f5;
-        }
-
-        /* 목차 스타일 */
-        .table-of-contents {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
             padding: 20px;
-            margin: 20px 0;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 15px;
+            color: var(--gray-text);
+            font-size: 14px;
         }
 
-        .table-of-contents h4 {
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            font-weight: 800;
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .heart-icon { color: #ff5b5b; }
+
+        /* 구분선 */
+        hr {
+            border: 0;
+            height: 1px;
+            background: #e4e8eb;
+            margin: 30px 0;
+        }
+        
+        /* 강조 텍스트 */
+        .highlight {
+            background-color: rgba(255, 235, 59, 0.3);
+            font-weight: bold;
+            padding: 0 2px;
         }
 
-        .table-of-contents ol {
-            margin-left: 20px;
-        }
-
-        .table-of-contents li {
-            margin-bottom: 8px;
-        }
-
-        /* 반응형 디자인 */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.5em;
-            }
-
-            .tabs {
-                flex-direction: column;
-            }
-
-            .tab {
-                border-right: none;
-                border-bottom: 1px solid #e9ecef;
-            }
-
-            .blog-title {
-                font-size: 1.4em;
-            }
-
-            .blog-content {
-                padding: 20px;
-            }
-
-            .tab-content {
-                padding: 20px;
-            }
-
-            .education-section {
-                padding: 20px;
-            }
-        }
-
-        /* 강조 박스 */
-        .highlight-box {
-            background: #fff9e6;
-            border-left: 4px solid #ffc107;
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .highlight-box strong {
-            color: #f57c00;
-        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🎯 어필리에이트 블로그 교육용 예시 콘텐츠</h1>
-        <p>실제로 잘 팔린 블로그 글의 구조를 분석하고 학습하세요</p>
-    </div>
 
     <div class="container">
-        <div class="tab-container">
-            <div class="tabs">
-                <div class="tab active" onclick="showTab(0)">
-                    Case 1: 겨울 여행/패션 리스트업
-                </div>
-                <div class="tab" onclick="showTab(1)">
-                    Case 2: 전시 티켓 제휴
-                </div>
-                <div class="tab" onclick="showTab(2)">
-                    Case 3: 상품 리뷰 & 꿀팁
-                </div>
+        <!-- 1. 탭 메뉴 -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="renderCase(0)">Case 1: 전시/티켓</button>
+            <button class="tab-btn" onclick="renderCase(1)">Case 2: 패션 모음</button>
+            <button class="tab-btn" onclick="renderCase(2)">Case 3: 상품 리뷰</button>
+        </div>
+
+        <!-- 2. 교육용 분석 섹션 -->
+        <div class="analysis-card" id="analysisSection">
+            <!-- JS로 렌더링 -->
+        </div>
+
+        <!-- 3. 블로그 시뮬레이션 섹션 -->
+        <div class="blog-frame">
+            <div class="blog-header" id="blogHeader">
+                <!-- JS로 렌더링 -->
             </div>
-
-            <!-- Case 1: 겨울 여행/패션 리스트업 -->
-            <div class="tab-content active" id="content-0">
-                <!-- 교육용 해설 섹션 -->
-                <div class="education-section">
-                    <h3>📚 이 콘텐츠가 돈을 번 이유 (분석)</h3>
-                    <p><strong>구조:</strong> 여행지/상황 설정 → 아이템 리스트 나열(1번~7번) → 스타일링 팁 → 할인 정보 → 꿀팁</p>
-                    <p><strong>핵심 트리거:</strong> "직접 가서 입어보니 이게 필요하더라"는 <strong>경험 기반의 추천</strong>으로 신뢰도 상승</p>
-                    <p><strong>수익화 전략:</strong> 하나의 글에 <strong>여러 개의 상품 링크(목도리, 장갑, 신발 등)</strong>를 배치하여, 독자가 하나라도 클릭하게 만듦 (객단가 상승 유도)</p>
-                    
-                    <h4>💡 초보 크리에이터를 위한 해설</h4>
-                    <p>이 글은 <strong>"아이쇼핑을 대신 해주는 구조"</strong>라서 초보자가 따라 하기 가장 좋습니다.</p>
-                    <ul>
-                        <li><strong>철저한 분업화 (아이템 나열):</strong> 머리(모자), 손(장갑), 발(신발), 옷(바지) 등 신체 부위별로 필요한 아이템을 쪼개서 링크를 달았습니다. 독자가 무엇을 필요로 하든 하나는 걸리게 만드는 <strong>[그물망 전략]</strong>입니다.</li>
-                        <li><strong>이유 있는 추천:</strong> 단순히 "예뻐요"가 아니라, "눈밭이라 젖으니까 방수 신발", "사진 잘 나오니까 유색 바지"처럼 <strong>[기능적/심미적 이유]</strong>를 덧붙여 설득력을 높였습니다.</li>
-                        <li><strong>크로스 셀링 (Cross-selling):</strong> 옷만 파는 게 아니라 마지막에 <strong>'압축 파우치(생활용품)'</strong>를 자연스럽게 끼워 팔았습니다. 옷에 관심 없는 사람도 짐 싸는 팁에는 반응하기 때문입니다.</li>
-                    </ul>
-                    <p><strong>📝 실전 연습:</strong> 여러분의 옷장이나 파우치를 열어서 "겨울 출근룩 BEST 5", "직장인 가방 속 필수템 BEST 3" 같은 주제로 이 구조를 연습해보세요!</p>
-                </div>
-
-                <!-- 블로그 시뮬레이션 섹션 -->
-                <div class="blog-simulation">
-                    <div class="blog-header">
-                        <div class="blog-title">얼어 죽어도 포기 못 해! 겨울 스키장&글램핑 룩 코디 BEST 7 (방한용품, 신발 추천)</div>
-                        <div class="blog-meta">
-                            <span>📁 여행/패션</span>
-                            <span>✍️ 세시간전</span>
-                            <span>📅 2025.12.17</span>
-                        </div>
-                    </div>
-
-                    <div class="blog-content">
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 하얀 눈밭을 배경으로 알록달록한 옷을 입고 찍은 전신 컷 모음]</p>
-                        </div>
-
-                        <p>다음 주 친구들과 겨울 여행(스키장/글램핑) 계획 있으신가요?</p>
-
-                        <p>"사진은 예쁘게 찍고 싶은데, 얼어 죽기는 싫어!" 하는 분들을 위해 준비했습니다.</p>
-
-                        <p>직접 입어보고 살아남은(?) 현실 고증 100% 방한 코디템과 준비물 리스트를 공유해요.</p>
-
-                        <p>이대로만 챙겨가면 인생샷도 건지고, 따뜻함도 챙길 수 있습니다!</p>
-
-                        <div class="table-of-contents">
-                            <h4>[ 목 차 ]</h4>
-                            <ol>
-                                <li>머리부터 발끝까지 필수 방한템 7</li>
-                                <li>눈밭에서 사진 잘 나오는 색 조합</li>
-                                <li>지금 사야 싼 시즌오프 세일 정보</li>
-                                <li>짐 1/2로 줄이는 짐 싸기 꿀팁</li>
-                            </ol>
-                        </div>
-
-                        <h3>1. 머리부터 발끝까지 필수 방한템 7</h3>
-
-                        <p>문의가 많았던 제 착장 아이템부터, 가져가서 유용했던 꿀템들 좌표 찍어드려요!</p>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 얼굴이 작아 보이는 화사한 색감의 바라클라바 착용 샷]</p>
-                        </div>
-
-                        <h4>❶ 바라클라바 (모자+목도리)</h4>
-
-                        <p>스키장 갈 때 귀마개, 목도리 따로 챙기면 짐만 됩니다. 이거 하나 뒤집어쓰면 끝!</p>
-
-                        <p>얼굴 전체를 감싸줘서 진짜 따뜻하고, 무엇보다 쓰면 얼굴이 주먹만 해 보여요. (셀카 필수템)</p>
-
-                        <a href="#" class="affiliate-link">🔗 니트 바라클라바 최저가 보기</a>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 스마트폰을 들고 있는 장갑 낀 손 클로즈업 사진]</p>
-                        </div>
-
-                        <h4>❷ 스마트폰 터치 장갑</h4>
-
-                        <p>사진 찍으려고 장갑 벗었다가 손 얼어본 적 있으시죠?</p>
-
-                        <p>엄지, 검지에 구멍이 뚫려있거나 터치 가능한 장갑은 필수입니다. 1+1 행사 중이라 친구랑 커플로 샀어요.</p>
-
-                        <a href="#" class="affiliate-link">🔗 1+1 터치 방한 장갑 보기</a>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 두툼한 패딩 부츠를 신고 눈을 밟고 있는 발 사진]</p>
-                        </div>
-
-                        <h4>❸ 패딩 부츠 (방수 필수)</h4>
-
-                        <p>일반 어그부츠 신으면 눈 밟았을 때 다 젖어서 발 동상 걸립니다.</p>
-
-                        <p>꼭 '생활 방수' 되는 패딩 소재 부츠로 고르세요. 미끄럼 방지까지 돼서 빙판길에서도 끄떡없었어요.</p>
-
-                        <a href="#" class="affiliate-link">🔗 방수 패딩 부츠 추천</a>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 쨍한 컬러감의 골덴(코듀로이) 바지 착용 샷]</p>
-                        </div>
-
-                        <h4>❹ 유색 코듀로이(골덴) 팬츠</h4>
-
-                        <p>하얀 눈밭에서는 청바지보다 쨍한 색감이 사진이 훨씬 잘 나옵니다.</p>
-
-                        <p>저는 핑크/민트 컬러 입었는데, 기��� 안감이라 내복 없이 입어도 후끈후끈했어요.</p>
-
-                        <a href="#" class="affiliate-link">🔗 기모 코듀로이 팬츠 모음</a>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 편안해 보이는 기모 조거 팬츠 착용 샷]</p>
-                        </div>
-
-                        <h4>❺ 기모 조거 팬츠</h4>
-
-                        <p>여행 가서 숙소에서 쉴 때나 차 타고 이동할 땐 무조건 편한 게 최고!</p>
-
-                        <p>무릎 안 나오고 짱짱한 기모 ���거는 교복처럼 입었습니다. 핏이 예뻐서 글램핑장 바베큐 파티 때 입어도 굿.</p>
-
-                        <a href="#" class="affiliate-link">🔗 휘뚜루마뚜루 기모 조거</a>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 짧은 기장의 글로시한 숏패딩 착용 샷]</p>
-                        </div>
-
-                        <h4>❻ 글로시 숏패딩</h4>
-
-                        <p>요즘 유행하는 반짝이는 소재의 패딩이에요.</p>
-
-                        <p>롱패딩은 활동하기 불편한데, 숏패딩은 다리도 길어 보이고 활동성도 좋습니다. (안에 히트텍 필수!)</p>
-
-                        <a href="#" class="affiliate-link">🔗 트렌디 숏패딩 특가</a>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 귀여운 캐릭터 수면 양말이나 발열 양말 사진]</p>
-                        </div>
-
-                        <h4>❼ 융털 발열 양말</h4>
-
-                        <p>신발만큼 중요한 게 양말입니다. 일반 양말 2개 신는 것보다 융털 양말 하나가 훨씬 따뜻해요.</p>
-
-                        <p>수족냉증 있으신 분들은 아묻따 쟁여가세요.</p>
-
-                        <a href="#" class="affiliate-link">🔗 융털 삭스 5족 세트</a>
-
-                        <h3>2. 눈밭에서 사진 잘 나오는 색 조합</h3>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 파란색, 빨간색 등 원색 옷을 입고 찍은 대비가 확실한 사진]</p>
-                        </div>
-
-                        <p>겨울 여행 룩의 핵심은 <strong>'채도 높은 컬러'</strong>입니다.</p>
-
-                        <p>배경이 온통 하얀색이기 때문에 회색, 검은색을 입으면 배경에 묻혀버려요.</p>
-
-                        <ul>
-                            <li><strong>추천 컬러:</strong> 쨍한 블루, 레드, 핫핑크</li>
-                            <li><strong>패턴:</strong> 노르딕 패턴 니트 (겨울 감성 200%)</li>
-                        </ul>
-
-                        <p>평소에 입기 부담스러웠던 색도 스키장에서는 인생샷 치트키가 됩니다!</p>
-
-                        <h3>3. 지그재그 시즌오프 세일</h3>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 쇼핑몰의 '세일 배너'나 장바구니 할인 적용 화면]</p>
-                        </div>
-
-                        <p>지금 겨울 시즌이 끝나가면서 <strong>'시즌 오프 패밀리 세일'</strong>이 시작됐어요.</p>
-
-                        <p>제가 소개한 패딩이랑 부츠도 정가 대비 40~50% 할인된 가격에 풀렸습니다.</p>
-
-                        <p>내년 겨울을 위해서라도 비싼 아우터는 지금 사두는 게 돈 버는 겁니다. 사이즈 빠지기 전에 확인하세요!</p>
-
-                        <a href="#" class="affiliate-link">▼▼▼ 겨울 인기 아이템 세일 모음전 가기</a>
-
-                        <h3>4. 짐 싸기 꿀팁 (이건 꼭!)</h3>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 빵빵한 패딩이 압축 파우치에 들어가 납작해진 비교 사진]</p>
-                        </div>
-
-                        <p>겨울옷은 부피가 커서 1박 2일만 가도 캐리어가 터지려고 하죠?</p>
-
-                        <p>이때 '여행용 압축 파우치' 쓰면 신세계가 열립니다.</p>
-
-                        <p>패딩이랑 니트 부피가 절반으로 줄어들어서, 올 때 기념품 넣을 공간까지 확보 가능해요. 여행 자주 다니시는 분들은 필수템입니다.</p>
-
-                        <a href="#" class="affiliate-link">🔗 여행용 압축 파우치 최저가</a>
-                    </div>
-
-                    <div class="blog-footer">
-                        <button>❤️ 공감 127</button>
-                        <button>💬 댓글 34</button>
-                        <button>📤 공유</button>
-                    </div>
-                </div>
+            <div class="blog-body" id="blogBody">
+                <!-- JS로 렌더링 -->
             </div>
-
-            <!-- Case 2: 전시 티켓 제휴 -->
-            <div class="tab-content" id="content-1">
-                <!-- 교육용 해설 섹션 -->
-                <div class="education-section">
-                    <h3>📚 이 콘텐츠가 돈을 번 이유 (분석)</h3>
-                    <p><strong>구조:</strong> 정보 제공(위치/시간) → 가격 비교(정가 vs 할인가) → 체험 상세(기대감 부여) → 행동 유도</p>
-                    <p><strong>핵심 트리거:</strong> "현장 예매는 비싸지만, 아래 링크는 싸다"는 논리로 링크 클릭의 당위성 확보</p>
-                    <p><strong>신뢰도 장치:</strong> 도슨트 시간, 짐 보관료 등 실질적인 꿀팁을 제공하여 정보의 질을 높임</p>
-                    
-                    <h4>💡 초보 크리에이터를 위한 해설</h4>
-                    <p>이 글이 왜 잘 팔릴 수밖에 없는지 <strong>3가지 포인트</strong>를 짚어드릴게요.</p>
-                    <ul>
-                        <li><strong>명확한 타겟팅 (도입부):</strong> "추운 날씨", "실내 데이트"라는 키워드로 검색해서 들어온 사람들의 니즈를 정확히 건드렸습니다.</li>
-                        <li><strong>확실한 비교 우위 (가격 정보):</strong> 현장에서 사면 손해라는 인식을 심어주어(15,000원 vs 9,800원), 링크 클릭을 유도했습니다. 이것이 수익화의 핵심입니다.</li>
-                        <li><strong>간접 체험 (본문):</strong> 각 구역(Zone)별 특징과 사진 잘 나오는 팁을 줘서, 독자가 "나도 가서 저렇게 찍어야지"라고 상상하게 만들었습니다.</li>
-                    </ul>
-                    <p><strong>📝 실전 연습:</strong> 여러분이 다녀온 전시회나 장소가 있다면, 위 <strong>[템플릿]</strong>의 내용만 쏙 바꿔서 글을 써보세요. 클릭률이 확 달라질 겁니다!</p>
+            <div class="blog-footer">
+                <div class="footer-item">
+                    <span class="heart-icon">♥</span> 공감 1,024
                 </div>
-
-                <!-- 블로그 시뮬레이션 섹션 -->
-                <div class="blog-simulation">
-                    <div class="blog-header">
-                        <div class="blog-title">[성수 실내 데이트] 인생샷 건지는 '이모션 로그' 전시회 35% 할인 예매 꿀팁 (웨이팅 정보)</div>
-                        <div class="blog-meta">
-                            <span>📁 전시/문화</span>
-                            <span>✍️ 세시간전</span>
-                            <span>📅 2025.12.17</span>
-                        </div>
-                    </div>
-
-                    <div class="blog-content">
-                        <p>갑자기 영하로 떨어진 날씨, 밖에서 돌아다니기엔 너무 춥고 매번 가는 카페는 지겨우신가요?</p>
-
-                        <p>오늘은 따뜻한 실내에서 감성 충전도 하고, 인스타 업로드용 인생샷도 100장 건질 수 있는 성수동 핫한 전시회 <strong>&lt;이모션 로그 : 나의 감정을 기록하다&gt;</strong> 다녀온 후기를 남겨봅니다.</p>
-
-                        <p>특히 <strong>현장 예매보다 훨씬 저렴하게 티켓 구하는 법</strong>까지 정리했으니, 주말 데이트 계획 있으신 분들은 3분만 집중해주세요!</p>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 전시회 입구의 화려한 네온사인 로고가 박힌 감성적인 사진]</p>
-                        </div>
-
-                        <h3>1. 전시 기본 정보 (위치/시간)</h3>
-
-                        <p>성수동 메인 거리에 위치한 '아트 팩토리'에서 진행 중입니다. 주말에는 웨이팅이 있을 수 있으니 눈치 게임이 필요해요.</p>
-
-                        <ul>
-                            <li><strong>전시명:</strong> 이모션 로그 (Emotion Log)</li>
-                            <li><strong>운영 시간:</strong> 10:00 ~ 19:00 (입장 마감 18:00)</li>
-                            <li><strong>휴관일:</strong> 매주 월요일</li>
-                            <li><strong>주차:</strong> 건물 내 1시간 무료 (이후 10분당 1,000원)</li>
-                        </ul>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 전시회장 지도 혹은 운영 시간이 적힌 안내판 사진]</p>
-                        </div>
-
-                        <p>뚜벅이 분들은 성수역 3번 출구에서 도보 5분 거리라 접근성이 아주 좋습니다. 짐이 많으신 분들은 <strong>입구 왼편 물품 보관함(유료 1,000원)</strong>을 이용하시면 가볍게 관람 가능해요.</p>
-
-                        <h3>2. 가격 및 할인 꿀팁 (필독✨)</h3>
-
-                        <p>가장 중요한 가격 정보입니다. 모르고 그냥 가면 정가 다 내야 하는데, 이거 진짜 아깝습니다.</p>
-
-                        <div class="highlight-box">
-                            <strong>💰 관람 요금</strong><br><br>
-                            • 성인: 15,000원<br>
-                            • 청소년: 12,000원
-                        </div>
-
-                        <p>현장 키오스크에서 결제하면 성인 1인당 15,000원이지만, <strong>아래 공식 제휴 링크를 통해 예약하면 35% 할인이 적용</strong>됩니다.</p>
-
-                        <ul>
-                            <li><strong>온라인 할인가: 9,800원 (1인)</strong></li>
-                            <li>2인 커플권 구매 시 추가 할인 적용</li>
-                        </ul>
-
-                        <p>커플 기준으로 <strong>커피 두 잔 값(약 1만원)</strong>을 아낄 수 있으니 꼭 미리 예매하고 방문하세요. 당일 예약 후 바로 사용도 가능합니다.</p>
-
-                        <a href="#" class="affiliate-link">🔽 35% 즉시 할인받고 예매하기</a>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 현장 매표소의 가격표(15,000원)와 핸드폰 예매 화면(9,800원)을 나란히 배치해 가격 차이를 강조한 사진]</p>
-                        </div>
-
-                        <h3>3. 전시 구성 및 관람 후기</h3>
-
-                        <p>이번 전시는 총 4개의 '감정 존(Zone)'으로 나뉘어 있어요. 단순히 눈으로 보는 게 아니라 직접 만지고 체험하는 <strong>인터랙티브 전시</strong>라 지루할 틈이 없었습니다.</p>
-
-                        <h4>① 1관: 우울과 고요 (Blue Room)</h4>
-
-                        <p>입장하자마자 차분한 파란색 조명과 물소리가 들리는 공간이 나옵니다. 바닥에 비친 물결 조명이 진짜 몽환적이었어요.</p>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 파란색 조명 아래서 뒷모습 실루엣이 분위기 있게 나온 전신 사진]</p>
-                        </div>
-
-                        <h4>② 2관: 기쁨과 환희 (Yellow Room)</h4>
-
-                        <p>분위기가 반전되면서 쨍한 노란색 볼풀장과 거울 룸이 나옵니다. 여기가 바로 <strong>메인 포토존</strong>이에요! 조명이 워낙 좋아서 막 찍어도 피부가 뽀얗게 나옵니다. (여기서만 20분 있었네요 ㅎㅎ)</p>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 거울 셀카 혹은 밝은 배경에서 웃고 있는 인물 중심 사진]</p>
-                        </div>
-
-                        <h4>③ 3관: 기록과 정리 (White Room)</h4>
-
-                        <p>나의 감정을 종이에 적어서 벽에 붙이는 체험 공간입니다. 다른 사람들이 남겨둔 메모를 읽는 재미도 쏠쏠했어요. 연인끼리 서로에게 편지 남겨주기 딱 좋은 코스입니다.</p>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 벽면에 가득 붙은 포스트잇 메모들 클로즈업 사진]</p>
-                        </div>
-
-                        <h3>4. 총평 및 관람 팁</h3>
-
-                        <p><strong>"보는 전시가 아니라, 경험하는 전시"</strong></p>
-
-                        <p>보통 미술관 가면 "조용히 하세요" 해서 눈치 보일 때가 많은데, 이곳은 자유롭게 사진 찍고 대화하는 분위기라 데이트 코스로 100점 만점이었습니다.</p>
-
-                        <div class="highlight-box">
-                            <strong>💡 관람 꿀팁 요약</strong><br><br>
-                            1. <strong>복장:</strong> 밝은색 옷을 입고 가야 사진이 잘 나옵니다. (검은 옷은 배경에 묻혀요!)<br>
-                            2. <strong>시간:</strong> 주말 오후 2~4시는 사람이 가장 많으니, <strong>오픈런(10시) 혹은 저녁 시간(5시)</strong>을 추천합니다.<br>
-                            3. <strong>예매:</strong> 현장 발권 줄이 꽤 깁니다. 모바일 티켓 있으면 바로 입장 가능하니 미리 준비하세요.
-                        </div>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 전시회 굿즈 샵에서 파는 예쁜 엽서나 마스킹 테이프 사진]</p>
-                        </div>
-
-                        <p>전시가 끝나면 이어지는 굿즈샵도 통장이 텅장 될 만큼 귀여운 게 많으니 주의하세요!</p>
-
-                        <p>이번 주말, 뻔한 밥-카페 코스가 지겹다면 따뜻한 실내에서 인생 사진 남길 수 있는 <strong>&lt;이모션 로그&gt;</strong> 어떠신가요? 할인 기간이 얼마 남지 않았으니 서두르세요!</p>
-
-                        <a href="#" class="affiliate-link">👉 최저가 티켓 예매하러 가기</a>
-                    </div>
-
-                    <div class="blog-footer">
-                        <button>❤️ 공감 243</button>
-                        <button>💬 댓글 67</button>
-                        <button>📤 공유</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Case 3: 상품 리뷰 & 꿀팁 -->
-            <div class="tab-content" id="content-2">
-                <!-- 교육용 해설 섹션 -->
-                <div class="education-section">
-                    <h3>📚 이 콘텐츠가 돈을 번 이유 (분석)</h3>
-                    <p><strong>구조:</strong> 여행 준비물(신발) 고민 → 해결책(특정 모델) → 구매 꿀팁(키즈 사이즈) → 기능 검증(방수/무게) → 링크</p>
-                    
-                    <h4>핵심 트리거:</h4>
-                    <ul>
-                        <li><strong>키즈 사이즈 공략:</strong> 성인용보다 저렴한 키즈 모델을 성인이 신을 수 있다는 정보로 <strong>'현명한 소비'</strong> 욕구 자극</li>
-                        <li><strong>공포 소구:</strong> "삿포로 눈 많이 오는데 운동화 신으면 발 젖어요"라며 <strong>방수 기능의 필요성</strong> 강조</li>
-                        <li><strong>대안 제시:</strong> 배송이 늦을 경우를 대비해 <strong>'내일 도착하는 상품 링크'</strong>를 추가로 걸어 놓는 치밀함 (수익 누수 방지)</li>
-                    </ul>
-                    
-                    <h4>💡 초보 크리에이터를 위한 해설</h4>
-                    <p>이 콘텐츠는 <strong>'정보의 비대칭'</strong>을 활용하여 클릭을 유도하는 똑똑한 글입니다.</p>
-                    <ul>
-                        <li><strong>비밀 정보 공유 (Kids 사이즈):</strong> "남들은 비싸게 주고 사는데, 나는 싸게 사는 법을 알아"라는 뉘앙스를 풍겨 독자가 글에 몰입하게 만듭니다. <strong>[가격 혜택]</strong>은 언제나 강력한 클릭 요인입니다.</li>
-                        <li><strong>경험 기반 검증 (Proof):</strong> 단순히 "좋아요"가 아니라, "눈밭에서 굴렀는데 안 젖었다", "2만 보 걸었는데 안 힘들다"처럼 <strong>[여행자의 구체적인 상황]</strong>을 대입해 설득했습니다.</li>
-                        <li><strong>플랜 B 제시 (수익화 방어):</strong> 배송이 늦어 구매를 포기하려는 사람들을 위해 <strong>'빠른 배송 상품 링크'</strong>를 추가로 제공하여, 이탈하려는 고객까지 잡았습니다.</li>
-                    </ul>
-                    <p><strong>📝 실전 연습:</strong> 여러분이 리뷰하려는 상품에도 <strong>"알고 보니 이게 더 싸더라"</strong> 혹은 <strong>"이 기능은 몰랐을걸?"</strong> 하는 포인트가 있는지 찾아보세요. 그 포인트가 바로 제목이 됩니다!</p>
-                </div>
-
-                <!-- 블로그 시뮬레이션 섹션 -->
-                <div class="blog-simulation">
-                    <div class="blog-header">
-                        <div class="blog-title">삿포로 여행 준비물 1순위! 10만원 이하로 건진 '방수 패딩 부츠' (키즈 사이즈 팁)</div>
-                        <div class="blog-meta">
-                            <span>📁 여행/리뷰</span>
-                            <span>✍️ 세시간전</span>
-                            <span>📅 2025.12.17</span>
-                        </div>
-                    </div>
-
-                    <div class="blog-content">
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 눈 쌓인 배경에서 귀여운 패딩 부츠를 신고 찍은 발 클로즈업 사진]</p>
-                        </div>
-
-                        <p>다음 주 삿포로/스키장 가시는 분들 주목!</p>
-
-                        <p>"운동화 신고 가도 되나요?"라고 묻는다면 대답은 NO입니다.</p>
-
-                        <p>눈 녹아서 양말 젖는 순간 여행 기분 다 망칩니다. (경험담 ㅠㅠ)</p>
-
-                        <p>그렇다고 여행 한 번 가려고 20만 원 넘는 비싼 부츠 사기는 아까우셨죠?</p>
-
-                        <p>제가 발품 팔아 찾은 가성비 끝판왕 방한 부츠와 사이즈 꿀팁 공유해 드릴게요.</p>
-
-                        <h3>1. 성인이 키즈(Kids)를 신는다구요?</h3>
-
-                        <p>제가 구매한 모델은 <strong>OO 브랜드의 윈터 키즈 부츠</strong>입니다.</p>
-
-                        <p>"어른이 무슨 애들 신발이야?" 하실 수 있는데, 요즘 키즈 라인이 250mm까지 넉넉하게 나옵니다.</p>
-
-                        <p>성인용이랑 디자인은 똑같은데 가격은 3~4만 원 더 저렴해요. 이거 모르면 진짜 손해입니다.</p>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 성인용 제품과 키즈 제품의 가격표를 비교하거나, 착용한 모습이 성인 신발과 다르지 않음을 보여주는 사진]</p>
-                        </div>
-
-                        <div class="highlight-box">
-                            • <strong>평소 사이즈:</strong> 235~240mm<br>
-                            • <strong>구매 사이즈:</strong> 키즈 240mm<br>
-                            • <strong>착용감:</strong> 수면 양말 신고도 아주 편하게 맞았어요!
-                        </div>
-
-                        <h3>2. 물 한 방울 안 들어오는 '완벽 방수'</h3>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 부츠 위에 물을 붓거나 눈 속에 발을 파묻었는데 젖지 않은 모습]</p>
-                        </div>
-
-                        <p>겨울 여행 신발의 핵심은 첫째도 방수, 둘째도 방수입니다.</p>
-
-                        <p>일반 털 부츠(어그)는 눈 닿으면 바로 젖어서 얼룩지고 발 시린 거 아시죠?</p>
-
-                        <p>이 제품은 겉감이 생활 방수 소재라 눈밭을 굴러도 털어내면 끝입니다.</p>
-
-                        <p>안감은 전체 융털이라 땀날 정도로 따뜻했어요. 수족냉증 있으신 분들은 무조건 이거 신으세요.</p>
-
-                        <h3>3. 하루 2만 보 걸어도 가벼운 무게</h3>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 한 손으로 신발을 가볍게 들고 있는 사진 또는 저울에 무게를 재는 사진]</p>
-                        </div>
-
-                        <p>여행 가면 하루 종일 걷잖아요. 신발 무거우면 종아리 터집니다.</p>
-
-                        <p>이 부츠는 <strong>사과 한 개 무게(약 200g)</strong>밖에 안 됩니다.</p>
-
-                        <p>운동화보다 가벼워서 캐리어에 챙겨가기에도 부담 없고, 하루 종일 신고 돌아다녀도 발 피로감이 전혀 없었어요.</p>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 미끄럼 방지 처리가 된 바닥면 클로즈업 사진]</p>
-                        </div>
-
-                        <p>바닥도 <strong>논슬립(Non-slip)</strong> 처리되어 있어서 빙판길에서도 안 미끄러지고 잘 다녔습니다. 안전을 위해서라도 꼭 챙기세요.</p>
-
-                        <h3>4. 구매처 및 배송 주의사항 (필독🚨)</h3>
-
-                        <div class="image-placeholder">
-                            <p>[이미지 가이드: 신발의 '접이식' 기능을 보여주며 두 가지 스타일링을 한 비교 사진]</p>
-                        </div>
-
-                        <p>저는 <strong>라이트 그레이</strong> 컬러를 샀는데, 어떤 옷에나 잘 어울려서 여행 내내 이것만 신었어요. 발목 부분을 접어서 귀엽게 연출할 수도 있습니다.</p>
-
-                        <p>단, 인기 사이즈는 재고가 빨리 빠지고 해외 배송인 경우 배송이 1~2주 걸릴 수 있어요.</p>
-
-                        <p>여행 날짜 임박하신 분들은 낭패 보지 않게 미리미리 주문하세요!</p>
-
-                        <a href="#" class="affiliate-link">👇 사이즈 재고 확인 및 최저가 링크</a>
-
-                        <div style="margin: 40px 0; padding: 25px; background: #f0f8ff; border-radius: 8px; border: 2px dashed #4a90e2;">
-                            <p style="margin-bottom: 15px;"><strong style="font-size: 1.1em; color: #2c5aa0;">+ 추가 꿀팁)</strong></p>
-                            <p>혹시 당장 내일 떠나야 해서 배송 기다릴 시간이 없는 분들은</p>
-                            <p>아래 '직진배송(내일 도착)' 가능한 유사 모델 리스트도 정리해 뒀으니 여기서 골라보세요!</p>
-                            <a href="#" class="affiliate-link" style="margin-top: 10px;">👇 내일 도착하는 방한 부츠 모음</a>
-                        </div>
-                    </div>
-
-                    <div class="blog-footer">
-                        <button>❤️ 공감 189</button>
-                        <button>💬 댓글 52</button>
-                        <button>📤 공유</button>
-                    </div>
+                <div class="footer-item">
+                    💬 댓글 86
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function showTab(index) {
-            // 모든 탭과 콘텐츠 숨기기
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
-            
-            tabs.forEach(tab => tab.classList.remove('active'));
-            contents.forEach(content => content.classList.remove('active'));
-            
-            // 선택된 탭과 콘텐츠 활성화
-            tabs[index].classList.add('active');
-            contents[index].classList.add('active');
-            
-            // 페이지 상단으로 스크롤
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // 가상 이미지 생성 함수 (HTML 반환)
+        function getVirtualImg(emoji, label) {
+            return `
+                <div class="virtual-img-box">
+                    <div class="virtual-img-tag">Virtual Image</div>
+                    <div class="virtual-img-emoji">${emoji}</div>
+                </div>
+            `;
         }
+
+        // 데이터 객체 (이모지 활용)
+        const cases = [
+            {
+                id: 1,
+                analysis: {
+                    title: "전시/티켓 제휴 글이 돈을 버는 이유",
+                    content: `
+                        <ul>
+                            <li><strong>구조:</strong> 정보 제공(위치/시간) → 가격 비교(정가 vs 할인가) → 체험 상세 → 행동 유도</li>
+                            <li><strong>핵심 트리거:</strong> "현장 예매는 비싸지만, 이 링크는 싸다"는 논리로 클릭의 당위성 확보</li>
+                            <li><strong>신뢰도 장치:</strong> 도슨트 시간, 짐 보관료 등 실질적인 꿀팁 제공</li>
+                        </ul>
+                    `
+                },
+                blog: {
+                    category: "전시/공연 · 35분 전",
+                    title: "[성수 실내 데이트] 인생샷 건지는 '이모션 로그' 전시회 35% 할인 예매 꿀팁 (웨이팅 정보)",
+                    author: "👩🏻‍💻", // 이모지 프로필
+                    content: `
+                        <p>갑자기 영하로 떨어진 날씨, 밖에서 돌아다니기엔 너무 춥고 매번 가는 카페는 지겨우신가요?</p>
+                        <p>오늘은 따뜻한 실내에서 감성 충전도 하고, 인스타 업로드용 인생샷도 100장 건질 수 있는 성수동 핫한 전시회 <strong>&lt;이모션 로그 : 나의 감정을 기록하다&gt;</strong> 다녀온 후기를 남겨봅니다.</p>
+                        <p>특히 <span class="highlight">현장 예매보다 훨씬 저렴하게 티켓 구하는 법</span>까지 정리했으니, 주말 데이트 계획 있으신 분들은 3분만 집중해주세요!</p>
+                        
+                        ${getVirtualImg('🌌📸✨', 'Exhibition Entrance')}
+                        <span class="img-caption">입구부터 힙한 감성 가득한 이모션 로그 전시회</span>
+                        
+                        <h3>1. 전시 기본 정보 (위치/시간)</h3>
+                        <p>성수동 메인 거리에 위치한 '아트 팩토리'에서 진행 중입니다. 주말에는 웨이팅이 있을 수 있으니 눈치 게임이 필요해요.</p>
+                        <ul>
+                            <li><strong>전시명:</strong> 이모션 로그 (Emotion Log)</li>
+                            <li><strong>운영 시간:</strong> 10:00 ~ 19:00 (입장 마감 18:00)</li>
+                            <li><strong>휴관일:</strong> 매주 월요일</li>
+                            <li><strong>주차:</strong> 건물 내 1시간 무료</li>
+                        </ul>
+                        
+                        ${getVirtualImg('🗺️🅿️ℹ️', 'Map Info')}
+                        <span class="img-caption">입구에 있는 안내도, 주차 정보도 꼭 확인하세요!</span>
+                        
+                        <p>뚜벅이 분들은 성수역 3번 출구에서 도보 5분 거리라 접근성이 아주 좋습니다. 짐이 많으신 분들은 <strong>입구 왼편 물품 보관함(유료 1,000원)</strong>을 이용하시면 가볍게 관람 가능해요.</p>
+                        
+                        <h3>2. 가격 및 할인 꿀팁 (필독✨)</h3>
+                        <p>가장 중요한 가격 정보입니다. 모르고 그냥 가면 정가 다 내야 하는데, 이거 진짜 아깝습니다.</p>
+                        <div class="quote-box">
+                            💰 관람 요금<br>
+                            - 성인: 15,000원<br>
+                            - 청소년: 12,000원
+                        </div>
+                        <p>현장 키오스크에서 결제하면 성인 1인당 15,000원이지만, <strong>아래 공식 제휴 링크를 통해 예약하면 35% 할인이 적용</strong>됩니다.</p>
+                        <ul>
+                            <li><strong>온라인 할인가: 9,800원 (1인)</strong></li>
+                            <li>2인 커플권 구매 시 추가 할인 적용</li>
+                        </ul>
+                        <p>커플 기준으로 <strong>커피 두 잔 값(약 1만원)</strong>을 아낄 수 있으니 꼭 미리 예매하고 방문하세요. 당일 예약 후 바로 사용도 가능합니다.</p>
+                        
+                        <a href="#" class="affiliate-link">35% 즉시 할인받고 예매하기 (링크)</a>
+                        
+                        ${getVirtualImg('🎫⚡📱', 'Price Comparison')}
+                        <span class="img-caption">현장가 vs 할인가 차이가 꽤 큽니다. 꼭 할인 받으세요!</span>
+                        
+                        <h3>3. 전시 구성 및 관람 후기</h3>
+                        <p>이번 전시는 총 4개의 '감정 존(Zone)'으로 나뉘어 있어요. 단순히 눈으로 보는 게 아니라 직접 만지고 체험하는 <strong>인터랙티브 전시</strong>라 지루할 틈이 없었습니다.</p>
+                        
+                        <h4>① 1관: 우울과 고요 (Blue Room)</h4>
+                        <p>입장하자마자 차분한 파란색 조명과 물소리가 들리는 공간이 나옵니다. 바닥에 비친 물결 조명이 진짜 몽환적이었어요.</p>
+                        
+                        ${getVirtualImg('🌊💙🌑', 'Blue Room')}
+                        <span class="img-caption">몽환적인 분위기의 1관, 뒷모습 사진이 잘 나와요.</span>
+                        
+                        <h4>② 2관: 기쁨과 환희 (Yellow Room)</h4>
+                        <p>분위기가 반전되면서 쨍한 노란색 볼풀장과 거울 룸이 나옵니다. 여기가 바로 <strong>메인 포토존</strong>이에요! 조명이 워낙 좋아서 막 찍어도 피부가 뽀얗게 나옵니다.</p>
+                        
+                        ${getVirtualImg('🟡✨🪞', 'Yellow Room')}
+                        <span class="img-caption">여기가 메인 포토존! 조명이 좋아서 셀카가 잘 나옵니다.</span>
+                        
+                        <h4>③ 3관: 기록과 정리 (White Room)</h4>
+                        <p>나의 감정을 종이에 적어서 벽에 붙이는 체험 공간입니다. 다른 사람들이 남겨둔 메모를 읽는 재미도 쏠쏠했어요. 연인끼리 서로에게 편지 남겨주기 딱 좋은 코스입니다.</p>
+                        
+                        ${getVirtualImg('📝🤍🖊️', 'White Room')}
+                        <span class="img-caption">서로에게 메시지를 남길 수 있는 체험 존</span>
+                        
+                        <h3>4. 총평 및 관람 팁</h3>
+                        <p><strong>"보는 전시가 아니라, 경험하는 전시"</strong></p>
+                        <p>보통 미술관 가면 "조용히 하세요" 해서 눈치 보일 때가 많은데, 이곳은 자유롭게 사진 찍고 대화하는 분위기라 데이트 코스로 100점 만점이었습니다.</p>
+                        
+                        <div class="quote-box">
+                            💡 관람 꿀팁 요약<br>
+                            1. <strong>복장:</strong> 밝은색 옷 필수!<br>
+                            2. <strong>시간:</strong> 오픈런(10시) 혹은 저녁 5시 추천<br>
+                            3. <strong>예매:</strong> 모바일 티켓 필수
+                        </div>
+
+                        ${getVirtualImg('🛍️🖼️🎁', 'Gift Shop')}
+                        <span class="img-caption">마지막 굿즈샵도 그냥 지나칠 수 없죠!</span>
+
+                        <p>이번 주말, 뻔한 밥-카페 코스가 지겹다면 따뜻한 실내에서 인생 사진 남길 수 있는 <strong>&lt;이모션 로그&gt;</strong> 어떠신가요? 할인 기간이 얼마 남지 않았으니 서두르세요!</p>
+                        
+                        <a href="#" class="affiliate-link">최저가 티켓 예매하러 가기</a>
+                    `
+                }
+            },
+            {
+                id: 2,
+                analysis: {
+                    title: "패션 모음(리스트업) 글이 돈을 버는 이유",
+                    content: `
+                        <ul>
+                            <li><strong>그물망 전략:</strong> 모자, 장갑, 신발 등 아이템을 분산 배치하여 독자가 뭐든 하나는 클릭하게 유도 (객단가 상승)</li>
+                            <li><strong>이유 있는 추천:</strong> "눈밭이라 젖으니까 방수", "사진 잘 나오니까 유색" 등 기능적/심미적 명분 제공</li>
+                            <li><strong>크로스 셀링:</strong> 패션 외에 '압축 파우치' 같은 생활용품을 끼워 팔아 타겟 확장</li>
+                        </ul>
+                    `
+                },
+                blog: {
+                    category: "여행/패션 · 1시간 전",
+                    title: "얼어 죽어도 포기 못 해! 겨울 스키장&글램핑 룩 코디 BEST 7 (방한용품, 신발 추천)",
+                    author: "⛷️", // 이모지 프로필
+                    content: `
+                        ${getVirtualImg('⛄❄️🧥', 'Winter Fashion')}
+                        <span class="img-caption">눈밭에서는 역시 쨍한 컬러가 사진이 잘 나와요!</span>
+                        
+                        <p>다음 주 친구들과 겨울 여행(스키장/글램핑) 계획 있으신가요?</p>
+                        <p>"사진은 예쁘게 찍고 싶은데, 얼어 죽기는 싫어!" 하는 분들을 위해 준비했습니다.</p>
+                        <p>직접 입어보고 살아남은(?) <strong>현실 고증 100% 방한 코디템과 준비물 리스트</strong>를 공유해요. 이대로만 챙겨가면 인생샷도 건지고, 따뜻함도 챙길 수 있습니다!</p>
+                        <hr>
+                        <p><strong>[ 목 차 ]</strong><br>
+                        1. 머리부터 발끝까지 필수 방한템 7<br>
+                        2. 눈밭에서 사진 잘 나오는 색 조합<br>
+                        3. 지금 사야 싼 시즌오프 세일 정보<br>
+                        4. 짐 1/2로 줄이는 짐 싸기 꿀팁</p>
+                        <hr>
+                        
+                        <h3>1. 머리부터 발끝까지 필수 방한템 7</h3>
+                        <p>문의가 많았던 제 착장 아이템부터, 가져가서 유용했던 꿀템들 좌표 찍어드려요!</p>
+                        
+                        ${getVirtualImg('🧣🧢🧶', 'Balaclava')}
+                        <span class="img-caption">얼굴이 작아 보이는 바라클라바, 셀카 필수템이에요.</span>
+                        
+                        <p><strong>❶ 바라클라바 (모자+목도리)</strong><br>
+                        스키장 갈 때 귀마개, 목도리 따로 챙기면 짐만 됩니다. 이거 하나 뒤집어쓰면 끝!<br>
+                        얼굴 전체를 감싸줘서 진짜 따뜻하고, 무엇보다 쓰면 얼굴이 주먹만 해 보여요. (셀카 필수템)</p>
+                        <a href="#" class="affiliate-link">니트 바라클라바 최저가 보기</a>
+                        
+                        ${getVirtualImg('🧤📱👆', 'Touch Gloves')}
+                        <span class="img-caption">장갑 끼고도 스마트폰 터치, 필수인 거 아시죠?</span>
+                        
+                        <p><strong>❷ 스마트폰 터치 장갑</strong><br>
+                        사진 찍으려고 장갑 벗었다가 손 얼어본 적 있으시죠?<br>
+                        엄지, 검지에 구멍이 뚫려있거나 터치 가능한 장갑은 필수입니다. 1+1 행사 중이라 친구랑 커플로 샀어요.</p>
+                        <a href="#" class="affiliate-link">1+1 터치 방한 장갑 보기</a>
+
+                        ${getVirtualImg('🥾💧🚫', 'Waterproof Boots')}
+                        <span class="img-caption">눈 밟아도 젖지 않는 방수 패딩 부츠</span>
+                        
+                        <p><strong>❸ 패딩 부츠 (방수 필수)</strong><br>
+                        일반 어그부츠 신으면 눈 밟았을 때 다 젖어서 발 동상 걸립니다.<br>
+                        꼭 <strong>'생활 방수'</strong> 되는 패딩 소재 부츠로 고르세요. 미끄럼 방지까지 돼서 빙판길에서도 끄떡없었어요.</p>
+                        <a href="#" class="affiliate-link">방수 패딩 부츠 추천</a>
+                        
+                        ${getVirtualImg('👖🎀🎨', 'Corduroy Pants')}
+                        <span class="img-caption">칙칙한 겨울옷 사이에 포인트가 되는 골덴 바지</span>
+                        
+                        <p><strong>❹ 유색 코듀로이(골덴) 팬츠</strong><br>
+                        하얀 눈밭에서는 청바지보다 쨍한 색감이 사진이 훨씬 잘 나옵니다.<br>
+                        저는 핑크/민트 컬러 입었는데, 기모 안감이라 내복 없이 입어도 후끈후끈했어요.</p>
+                        <a href="#" class="affiliate-link">기모 코듀로이 팬츠 모음</a>
+
+                        <h3>2. 눈밭에서 사진 잘 나오는 색 조합</h3>
+                        
+                        ${getVirtualImg('🔴🔵🏂', 'Vivid Colors')}
+                        <span class="img-caption">하얀 눈밭에서는 원색 컬러가 진리입니다.</span>
+                        
+                        <p>겨울 여행 룩의 핵심은 <strong>'채도 높은 컬러'</strong>입니다.<br>
+                        배경이 온통 하얀색이기 때문에 회색, 검은색을 입으면 배경에 묻혀버려요.</p>
+                        <ul>
+                            <li>추천 컬러: 쨍한 블루, 레드, 핫핑크</li>
+                            <li>패턴: 노르딕 패턴 니트 (겨울 감성 200%)</li>
+                        </ul>
+                        
+                        <h3>3. 지그재그 시즌오프 세일</h3>
+                        
+                        ${getVirtualImg('🏷️🛍️📉', 'Season Off Sale')}
+                        
+                        <p>지금 겨울 시즌이 끝나가면서 <strong>'시즌 오프 패밀리 세일'</strong>이 시작됐어요.<br>
+                        제가 소개한 패딩이랑 부츠도 정가 대비 40~50% 할인된 가격에 풀렸습니다. 내년 겨울을 위해서라도 지금 사두는 게 이득!</p>
+                        
+                        <a href="#" class="affiliate-link">겨울 인기 아이템 세일 모음전 가기</a>
+                        
+                        <h3>4. 짐 싸기 꿀팁 (이건 꼭!)</h3>
+                        
+                        ${getVirtualImg('🧳📦🤏', 'Vacuum Pouch')}
+                        <span class="img-caption">부피 큰 패딩도 압축팩 하나면 절반으로 줄어요!</span>
+                        
+                        <p>겨울옷은 부피가 커서 1박 2일만 가도 캐리어가 터지려고 하죠?<br>
+                        이때 <strong>'여행용 압축 파우치'</strong> 쓰면 신세계가 열립니다. 패딩이랑 니트 부피가 절반으로 줄어들어서, 올 때 기념품 넣을 공간까지 확보 가능해요.</p>
+                        
+                        <a href="#" class="affiliate-link">여행용 압축 파우치 최저가</a>
+                    `
+                }
+            },
+            {
+                id: 3,
+                analysis: {
+                    title: "단일 상품 리뷰(꿀팁형) 글이 돈을 버는 이유",
+                    content: `
+                        <ul>
+                            <li><strong>정보 비대칭(Honey Tip):</strong> "성인도 키즈 사이즈가 맞다(더 싸다)"는 정보를 제공하여 '현명한 소비' 심리 자극</li>
+                            <li><strong>공포 소구:</strong> "일반 운동화 신으면 양말 다 젖어서 여행 망친다"며 방수 기능의 필요성 강조</li>
+                            <li><strong>플랜 B (수익 방어):</strong> 배송이 늦을까 봐 이탈하려는 고객을 위해 '내일 도착 상품' 링크 추가</li>
+                        </ul>
+                    `
+                },
+                blog: {
+                    category: "상품리뷰 · 1일 전",
+                    title: "삿포로 여행 준비물 1순위! 10만원 이하로 건진 '방수 패딩 부츠' (키즈 사이즈 팁)",
+                    author: "🛍️", // 이모지 프로필
+                    content: `
+                        ${getVirtualImg('👢❄️🏔️', 'Snow Boots')}
+                        <span class="img-caption">눈길에서도 끄떡없는 가성비 부츠를 찾았습니다.</span>
+                        
+                        <p>다음 주 삿포로/스키장 가시는 분들 주목!</p>
+                        <p>"운동화 신고 가도 되나요?"라고 묻는다면 대답은 <strong>NO</strong>입니다.<br>
+                        눈 녹아서 양말 젖는 순간 여행 기분 다 망칩니다. (경험담 ㅠㅠ)</p>
+                        <p>그렇다고 여행 한 번 가려고 20만 원 넘는 비싼 부츠 사기는 아까우셨죠?<br>
+                        제가 발품 팔아 찾은 <strong>가성비 끝판왕 방한 부츠</strong>와 <strong>사이즈 꿀팁</strong> 공유해 드릴게요.</p>
+                        
+                        <h3>1. 성인이 키즈(Kids)를 신는다구요?</h3>
+                        <p>제가 구매한 모델은 <strong>OO 브랜드의 윈터 키즈 부츠</strong>입니다.</p>
+                        <p>"어른이 무슨 애들 신발이야?" 하실 수 있는데, 요즘 키즈 라인이 <strong>250mm</strong>까지 넉넉하게 나옵니다.<br>
+                        성인용이랑 디자인은 똑같은데 <span class="highlight">가격은 3~4만 원 더 저렴</span>해요. 이거 모르면 진짜 손해입니다.</p>
+                        
+                        ${getVirtualImg('👟📏💰', 'Kids Size Tip')}
+                        <span class="img-caption">디자인은 똑같은데 가격은 훨씬 저렴해요!</span>
+                        
+                        <ul>
+                            <li><strong>평소 사이즈:</strong> 235~240mm</li>
+                            <li><strong>구매 사이즈:</strong> 키즈 240mm</li>
+                            <li><strong>착용감:</strong> 수면 양말 신고도 아주 편하게 맞았어요!</li>
+                        </ul>
+                        
+                        <h3>2. 물 한 방울 안 들어오는 '완벽 방수'</h3>
+                        
+                        ${getVirtualImg('💧🛡️🦶', 'Waterproof Test')}
+                        <span class="img-caption">물을 부어도 젖지 않고 또르르 흘러내립니다.</span>
+                        
+                        <p>겨울 여행 신발의 핵심은 첫째도 방수, 둘째도 방수입니다.<br>
+                        일반 털 부츠(어그)는 눈 닿으면 바로 젖어서 얼룩지고 발 시린 거 아시죠?</p>
+                        <p>이 제품은 겉감이 생활 방수 소재라 눈밭을 굴러도 털어내면 끝입니다.<br>
+                        안감은 <strong>전체 융털</strong>이라 땀날 정도로 따뜻했어요. 수족냉증 있으신 분들은 무조건 이거 신으세요.</p>
+                        
+                        <h3>3. 하루 2만 보 걸어도 가벼운 무게</h3>
+                        
+                        ${getVirtualImg('🍎⚖️👟', 'Super Light')}
+                        <span class="img-caption">사과 한 개 무게만큼 가벼워서 오래 걸어도 편해요.</span>
+                        
+                        <p>여행 가면 하루 종일 걷잖아요. 신발 무거우면 종아리 터집니다.<br>
+                        이 부츠는 <strong>사과 한 개 무게(약 200g)</strong>밖에 안 됩니다.</p>
+                        <p>운동화보다 가벼워서 캐리어에 챙겨가기에도 부담 없고, 하루 종일 신고 돌아다녀도 발 피로감이 전혀 없었어요.</p>
+                        
+                        ${getVirtualImg('🦶👣🛑', 'Non-Slip')}
+                        <span class="img-caption">미끄럼 방지 처리도 확실해서 빙판길 걱정 끝!</span>
+                        
+                        <h3>4. 구매처 및 배송 주의사항 (필독🚨)</h3>
+                        
+                        ${getVirtualImg('👢🔄🎀', 'Style Guide')}
+                        <span class="img-caption">접어서 신으면 또 다른 귀여운 느낌으로 연출 가능해요.</span>
+                        
+                        <p>저는 <strong>라이트 그레이</strong> 컬러를 샀는데, 어떤 옷에나 잘 어울려서 여행 내내 이것만 신었어요. 발목 부분을 접어서 귀엽게 연출할 수도 있습니다.</p>
+                        <p>단, 인기 사이즈는 재고가 빨리 빠지고 해외 배송인 경우 배송이 1~2주 걸릴 수 있어요.<br>
+                        여행 날짜 임박하신 분들은 낭패 보지 않게 미리미리 주문하세요!</p>
+                        
+                        <a href="#" class="affiliate-link">사이즈 재고 확인 및 최저가 링크</a>
+                        
+                        <div class="quote-box">
+                            <strong>+ 추가 꿀팁)</strong><br>
+                            혹시 당장 내일 떠나야 해서 배송 기다릴 시간이 없는 분들은<br>
+                            아래 '직진배송(내일 도착)' 가능한 유사 모델 리스트도 정리해 뒀으니 여기서 골라보세요!
+                        </div>
+                        
+                        <a href="#" class="affiliate-link">내일 도착하는 방한 부츠 모음</a>
+                    `
+                }
+            }
+        ];
+
+        // 렌더링 함수
+        function renderCase(index) {
+            const data = cases[index];
+            
+            // 탭 활성화 스타일
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+
+            // 섹션 A: 분석 카드 렌더링
+            const analysisHTML = `
+                <div class="analysis-header">
+                    <span class="analysis-badge">Marketing Point</span>
+                    <span class="analysis-title">${data.analysis.title}</span>
+                </div>
+                <div class="analysis-content">
+                    ${data.analysis.content}
+                </div>
+            `;
+            document.getElementById('analysisSection').innerHTML = analysisHTML;
+
+            // 섹션 B: 블로그 헤더 렌더링
+            const blogHeaderHTML = `
+                <div class="blog-category">${data.blog.category}</div>
+                <div class="blog-title">${data.blog.title}</div>
+                <div class="blog-meta">
+                    <div class="author-img">${data.blog.author}</div>
+                    <span>${data.blog.author === '👩🏻‍💻' ? '트렌드헌터' : data.blog.author === '⛷️' ? '스타일로그' : '알뜰살뜰'}</span>
+                </div>
+            `;
+            document.getElementById('blogHeader').innerHTML = blogHeaderHTML;
+
+            // 섹션 B: 블로그 본문 렌더링
+            document.getElementById('blogBody').innerHTML = data.blog.content;
+        }
+
+        // 초기 실행 (Case 1)
+        window.onload = () => renderCase(0);
+
     </script>
 </body>
 </html>
